@@ -4,3 +4,6 @@ This project is about estimating the disparity between two images when one of th
 By knowing the focal length of the camera and the baseline distance, we can accurately determine the 3-d location of the point.
 
 One method of estimating disparity is called the Block-Matching method for which the code is written.
+Test result is show below:-
+
+![Result from Middlebury test image](<https://github.com/ChetanPatil28/Stereo-Correspondence-Matching/tree/master/Outputs/tsukuba_disparity.png>)
