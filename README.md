@@ -16,7 +16,7 @@ LEFT Image             |  RIGHT Image
 
  
 
-Block-matching Disparity | Energy-Minimization via Dynamic Porgramming
+Block-matching Disparity | Energy-Minimization via Dynamic Programming
 :---------------------:|:-------------------------:
 ![](<Outputs/tsukuba_disparity.png>)| ![](<Outputs/Disparity_dynamic.png>)
 
