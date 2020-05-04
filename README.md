@@ -13,7 +13,7 @@ LEFT Image             |  RIGHT Image
 
  
 
-Inferred Disparity
+Block-matching Disparity | 
 :---------------------:
 ![](<Outputs/tsukuba_disparity.png>)
 
