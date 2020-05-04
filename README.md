@@ -5,6 +5,9 @@ By knowing the focal length of the camera and the baseline distance, we can accu
 This project aims at implementing some of those Stereo-Matching algorithms in Python.
 
 #### 1. BLOCK-MATCHING method for which the code is written in `BlockMatching.py`
+#### 1. ENERGY MINIMIZATION VIA DYNAMIC PROGRAMMING method for which the code is written in `Dynamic.py`
+
+
 Input images are Left and Right correspondingly.
 
 LEFT Image             |  RIGHT Image
@@ -13,8 +16,8 @@ LEFT Image             |  RIGHT Image
 
  
 
-Block-matching Disparity | 
-:---------------------:
-![](<Outputs/tsukuba_disparity.png>)
+Block-matching Disparity | Energy-Minimization via Dynamic Porgramming
+:---------------------:|:-------------------------:
+![](<Outputs/tsukuba_disparity.png>)| ![](<Outputs/Disparity_dynamic.png>)
 
-THE BRIGHTER THE COLOR, THE NEARER THE OBJECT IS.
+###### THE BRIGHTER THE COLOR, THE NEARER THE OBJECT IS.
