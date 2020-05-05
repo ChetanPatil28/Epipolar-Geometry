@@ -12,12 +12,12 @@ Input images are Left and Right correspondingly.
 
 LEFT Image             |  RIGHT Image
 :-------------------------:|:-------------------------:
-![](<Inputs/tsukuba_l.png>) | ![](<Inputs/tsukuba_r.png>)
+![](<Stereo_Correspondence/Inputs/tsukuba_l.png>) | ![](<Stereo_Correspondence/Inputs/tsukuba_r.png>)
 
  
 
 Block-matching Disparity | Energy-Minimization via Dynamic Programming
 :---------------------:|:-------------------------:
-![](<Outputs/tsukuba_disparity.png>)| ![](<Outputs/Disparity_dynamic.png>)
+![](<Stereo_Correspondence/Outputs/tsukuba_disparity.png>)| ![](<Stereo_Correspondence/Outputs/Disparity_dynamic.png>)
 
 ###### THE BRIGHTER THE COLOR, THE NEARER THE OBJECT IS.
