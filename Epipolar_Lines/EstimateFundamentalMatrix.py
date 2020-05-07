@@ -12,12 +12,6 @@ def load_points(file):
 
 
 
-TwoD_fileA = os.path.join(os.getcwd(),"input/pts2d-pic_a.txt")
-TwoD_fileB = os.path.join(os.getcwd(),"input/pts2d-pic_b.txt")
-
-
-pts_2dA = load_points(TwoD_fileA)
-pts_2dB = load_points(TwoD_fileB)
 
 def svd_decompose(pts_a,pts_b, rank =2):
     num_pts = pts_a.shape[0]
@@ -43,8 +37,19 @@ def svd_decompose(pts_a,pts_b, rank =2):
 
 
 
-Fund = svd_decompose(pts_2dA,pts_2dB)
 
 
 if __name__=="__main__":
-    print(Fund)
+    pass
+
+### This
+
+# TwoD_fileA = os.path.join(os.getcwd(),"input/pts2d-pic_a.txt")
+# TwoD_fileB = os.path.join(os.getcwd(),"input/pts2d-pic_b.txt")
+
+
+# pts_2dA = load_points(TwoD_fileA)
+# pts_2dB = load_points(TwoD_fileB)
+# Fund = svd_decompose(pts_2dA,pts_2dB)
+
+# print(Fund)
