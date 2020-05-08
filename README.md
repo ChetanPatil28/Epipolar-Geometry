@@ -21,3 +21,16 @@ Block-matching Disparity | Energy-Minimization via Dynamic Programming
 ![](<Stereo_Correspondence/Outputs/tsukuba_disparity.png>)| ![](<Stereo_Correspondence/Outputs/Disparity_dynamic.png>)
 
 ###### THE BRIGHTER THE COLOR, THE NEARER THE OBJECT IS.
+
+# Epipolar-Line-Estimation
+
+This section is about finding the Epipolar-Lines given a correspondence pair.
+Essentially, we estimate the FundaMental matrix such that x1.T*F*x = 0.
+The famous 8-point algorithm is used to find the F matrix.
+Link to paper- https://www.cse.unr.edu/~bebis/CS485/Handouts/hartley.pdf
+
+The resulting epipoles are shown below.
+
+VIEW-A             |  VIEW-B
+:-------------------------:|:-------------------------:
+![](<Epipolar_Lines/Epilines_A.png>) | ![](<Epipolar_Lines/Epilines_B.png>)
