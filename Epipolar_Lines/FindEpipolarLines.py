@@ -10,16 +10,14 @@ def find_epipoles(pts_2dA, pts_2dB,img_a,img_b):
     scale_A = np.linalg.norm((pts_2dA-mean_A))/len(pts_2dA)
 
     mean_B = np.mean(pts_2dB, axis=0)
-    scale_B = np.linalg.norm((pts_2dB - mean_B)) / len(pts_2dB)
+    scale_B = np.linalg.norm((pts_2dB - mean_B)) / (2*len(pts_2dB))
 
-    print(scale_A)
+
     scale_A = np.sqrt(2)/scale_A
     scale_B = np.sqrt(2)/scale_B
 
 
-    
-
-    norm_pts_A = (pts_2dA-mean_A)*scale_A;
+    norm_pts_A = (pts_2dA - mean_A)* scale_A;
     norm_pts_B = (pts_2dB - mean_B) * scale_B;
 
     denorm_A = np.asarray([[scale_A, 0, -scale_A*mean_A[0]],
@@ -97,8 +95,8 @@ def find_epipoles(pts_2dA, pts_2dB,img_a,img_b):
 
 
 
-    cv2.imwrite('EpilinesV2_A.png', img_a)
-    cv2.imwrite('EpilinesV2_B.png', img_b)
+    cv2.imwrite('Epilines_A.png', img_a)
+    cv2.imwrite('Epilines_B.png', img_b)
 
 
 if __name__ == "__main__":
