@@ -33,4 +33,4 @@ The resulting epipoles are shown below.
 
 VIEW-A             |  VIEW-B
 :-------------------------:|:-------------------------:
-![](<Epipolar_Lines/Epilines_A.png>) | ![](<Epipolar_Lines/Epilines_B.png>)
+![](<Epipolar_Lines/Result/Epilines_A.png>) | ![](<Epipolar_Lines/Result/Epilines_B.png>)
