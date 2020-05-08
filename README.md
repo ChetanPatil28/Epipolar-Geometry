@@ -1,4 +1,4 @@
-# Stereo-Correspondence-Matching
+# 1. Stereo-Correspondence-Matching
 
 This project is about estimating the disparity between two images when one of the image is taken by slightly moving towards the right.
 By knowing the focal length of the camera and the baseline distance, we can accurately determine the 3-d location of the point.
@@ -22,7 +22,7 @@ Block-matching Disparity | Energy-Minimization via Dynamic Programming
 
 ###### THE BRIGHTER THE COLOR, THE NEARER THE OBJECT IS.
 
-# Epipolar-Line-Estimation
+# 2. Epipolar-Line-Estimation
 
 This section is about finding the Epipolar-Lines given a correspondence pair.
 Essentially, we estimate the FundaMental matrix such that x1.T*F*x = 0.
