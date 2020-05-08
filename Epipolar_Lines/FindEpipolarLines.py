@@ -58,22 +58,29 @@ def find_epipoles(pts_2dA, pts_2dB,img_a,img_b):
     n, m, _ = img_a.shape
     leftmost = np.cross([0, 0, 1], [n, 0, 1])
     rightmost = np.cross([0, m, 1], [n, m, 1])
-    for line_a, line_b in zip(eplines_a, eplines_b):
+    for i in range(len(eplines_a)):
+        line_a, line_b = eplines_a[i], eplines_b[i]
+        pt_a,pt_b = pts_2dA[i], pts_2dB[i]
+
+        color = tuple(np.random.randint(0,255,3).tolist())
         leftmost_a = np.cross(line_a, leftmost)
         rightmost_a = np.cross(line_a, rightmost)
         leftmost_a = (leftmost_a[:2] / leftmost_a[2]).astype(int)
         rightmost_a = (rightmost_a[:2] / rightmost_a[2]).astype(int)
-        cv2.line(img_a, tuple(leftmost_a[:2]), tuple(rightmost_a[:2]), (255, 0, 0), thickness=1)
+        cv2.line(img_a, tuple(leftmost_a[:2]), tuple(rightmost_a[:2]), color, thickness=1)
+        cv2.circle(img_a, tuple(map(int,pt_a)), 4, color, -1)
+
         leftmost_b = np.cross(line_b, leftmost)
         rightmost_b = np.cross(line_b, rightmost)
         leftmost_b = (leftmost_b[:2] / leftmost_b[2]).astype(int)
         rightmost_b = (rightmost_b[:2] / rightmost_b[2]).astype(int)
-        cv2.line(img_b, tuple(leftmost_b[:2]), tuple(rightmost_b[:2]), (255, 0, 0), thickness=1)
+        cv2.line(img_b, tuple(leftmost_b[:2]), tuple(rightmost_b[:2]), color, thickness=1)
+        cv2.circle(img_b, tuple(map(int,pt_b)), 4, color, -1)
 
 
 
-    cv2.imwrite('Epilines_A.png', img_a)
-    cv2.imwrite('Epilines_B.png', img_b)
+    cv2.imwrite('Result/Epilines_A.png', img_a)
+    cv2.imwrite('Result/Epilines_B.png', img_b)
 
 
 if __name__ == "__main__":
