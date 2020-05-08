@@ -13,7 +13,7 @@ def load_points(file):
 
 
 
-def svd_decompose(pts_a,pts_b, rank =2):
+def svdecompose(pts_a,pts_b, rank =2):
     num_pts = pts_a.shape[0]
     xa = pts_a[:,0]
     ya = pts_a[:,1]
