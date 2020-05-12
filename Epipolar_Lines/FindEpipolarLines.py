@@ -84,14 +84,23 @@ def find_epipoles(pts_2dA, pts_2dB,img_a,img_b):
 
 
 if __name__ == "__main__":
-    TwoD_fileA = os.path.join(os.getcwd(), "Input/2d_pts_a.txt")
-    TwoD_fileB = os.path.join(os.getcwd(), "Input/2d_pts_b.txt")
+    # TwoD_fileA = os.path.join(os.getcwd(), "Input/2d_pts_a.txt")
+    # TwoD_fileB = os.path.join(os.getcwd(), "Input/2d_pts_b.txt")
 
+    TwoD_fileA = os.path.join(os.getcwd(), "Input/cor1.npy")
+    TwoD_fileB = os.path.join(os.getcwd(), "Input/cor2.npy")
 
     img_a = cv2.imread('Input/pic_a.jpg', cv2.IMREAD_COLOR)
     img_b = cv2.imread('Input/pic_b.jpg', cv2.IMREAD_COLOR)
-    pts_2dA = load_points(TwoD_fileA)
-    pts_2dB = load_points(TwoD_fileB)
+
+    # img_a = cv2.imread('Input/dino0.png', cv2.IMREAD_COLOR)
+    # img_b = cv2.imread('Input/dino1.png', cv2.IMREAD_COLOR)
+    try:
+        pts_2dA = load_points(TwoD_fileA)
+        pts_2dB = load_points(TwoD_fileB)
+    except UnicodeError:
+        pts_2dA = np.load(TwoD_fileA).T[:,:2]
+        pts_2dB = np.load(TwoD_fileB).T[:,:2]
 
 
     find_epipoles(pts_2dA, pts_2dB, img_a, img_b)
