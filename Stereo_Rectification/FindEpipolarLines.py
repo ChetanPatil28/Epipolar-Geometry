@@ -84,11 +84,11 @@ def find_epipoles(pts_2dA, pts_2dB,img_a,img_b):
 
 
 if __name__ == "__main__":
-    # TwoD_fileA = os.path.join(os.getcwd(), "Input/2d_pts_a.txt")
-    # TwoD_fileB = os.path.join(os.getcwd(), "Input/2d_pts_b.txt")
+    TwoD_fileA = os.path.join(os.getcwd(), "Input/2d_pts_a.txt")
+    TwoD_fileB = os.path.join(os.getcwd(), "Input/2d_pts_b.txt")
 
-    TwoD_fileA = os.path.join(os.getcwd(), "Input/cor1.npy")
-    TwoD_fileB = os.path.join(os.getcwd(), "Input/cor2.npy")
+    # TwoD_fileA = os.path.join(os.getcwd(), "Input/cor1.npy")
+    # TwoD_fileB = os.path.join(os.getcwd(), "Input/cor2.npy")
 
     img_a = cv2.imread('Input/pic_a.jpg', cv2.IMREAD_COLOR)
     img_b = cv2.imread('Input/pic_b.jpg', cv2.IMREAD_COLOR)
