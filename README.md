@@ -34,3 +34,10 @@ The resulting epipoles are shown below.
 VIEW-A             |  VIEW-B
 :-------------------------:|:-------------------------:
 ![](<Stereo_Rectification/Result/Epilines_B.png>) | ![](<Stereo_Rectification/Result/Epilines_A.png>)
+
+
+# 3. Stereo-Rectification
+
+Based on the fundamental-matrix estimated, we can rectify the images such that their epilines lie horizontally.
+
+Run the `StereoRectification/Stereo_rectify.py` to rectify both the images
