@@ -40,4 +40,14 @@ VIEW-A             |  VIEW-B
 
 Based on the fundamental-matrix estimated, we can rectify the images such that their epilines lie horizontally.
 
-Run the `StereoRectification/Stereo_rectify.py` to rectify both the images
+Run the `StereoRectification/Stereo_rectify.py` to rectify both the images.
+
+The resulting Rectified views are shown below.
+
+RECTIFIED VIEW-A             |  RECTIFIED VIEW-B
+:-------------------------:|:-------------------------:
+![](<Stereo_Rectification/Result/Rectified_left.png>) | ![](<Stereo_Rectification/Result/Rectified_right.png>)
+
+
+### THE HOMOGRAPHY-WARP IS DONE IN NUMPY, HENCE THE RECTIFICATION ALGORITHM IS MUCH FASTER THAN FOR-LOOPS.
+
