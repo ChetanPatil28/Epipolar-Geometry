@@ -99,24 +99,49 @@ def image_rectification(im1, im2, points1, points2):
     new_cor1 = rectify_points(H1, points1)
     new_cor2 = rectify_points(H2, points2)
 
-    return rectified_im1, rectified_im2, new_cor1, new_cor2
+    return rectified_im1, rectified_im2, new_cor1, new_cor2, F
 
 
+def plot_epilines(pts_2dA, pts_2dB, img_a, img_b, F):
+    eplines_a = get_lines(pts_2dB, F, from_where=2)
+    eplines_b = get_lines(pts_2dA, F, from_where=1)
 
+    n, m, _ = img_a.shape
+    leftmost = np.cross([0, 0, 1], [n, 0, 1])
+    rightmost = np.cross([0, m, 1], [n, m, 1])
+    for i in range(len(eplines_a)):
+        line_a, line_b = eplines_a[i], eplines_b[i]
+        pt_a, pt_b = pts_2dA[i], pts_2dB[i]
 
+        color = tuple(np.random.randint(0, 255, 3).tolist())
+        leftmost_a = np.cross(line_a, leftmost)
+        rightmost_a = np.cross(line_a, rightmost)
+        leftmost_a = (leftmost_a[:2] / leftmost_a[2]).astype(int)
+        rightmost_a = (rightmost_a[:2] / rightmost_a[2]).astype(int)
+        cv2.line(img_a, tuple(leftmost_a[:2]), tuple(rightmost_a[:2]), color, thickness=1)
+        cv2.circle(img_a, tuple(map(int, pt_a)), 4, color, -1)
+
+        leftmost_b = np.cross(line_b, leftmost)
+        rightmost_b = np.cross(line_b, rightmost)
+        leftmost_b = (leftmost_b[:2] / leftmost_b[2]).astype(int)
+        rightmost_b = (rightmost_b[:2] / rightmost_b[2]).astype(int)
+        cv2.line(img_b, tuple(leftmost_b[:2]), tuple(rightmost_b[:2]), color, thickness=1)
+        cv2.circle(img_b, tuple(map(int, pt_b)), 4, color, -1)
+
+    return img_a, img_b
 
 if __name__ == '__main__':
-    # TwoD_fileA = os.path.join(os.getcwd(), "Input/2d_pts_a.txt")
-    # TwoD_fileB = os.path.join(os.getcwd(), "Input/2d_pts_b.txt")
+    TwoD_fileA = os.path.join(os.getcwd(), "Input/2d_pts_a.txt")
+    TwoD_fileB = os.path.join(os.getcwd(), "Input/2d_pts_b.txt")
 
-    TwoD_fileA = os.path.join(os.getcwd(), "Input/cor1.npy")
-    TwoD_fileB = os.path.join(os.getcwd(), "Input/cor2.npy")
+    # TwoD_fileA = os.path.join(os.getcwd(), "Input/cor1.npy")
+    # TwoD_fileB = os.path.join(os.getcwd(), "Input/cor2.npy")
 
-    # img_a = cv2.imread('Input/pic_a.jpg', cv2.IMREAD_COLOR)
-    # img_b = cv2.imread('Input/pic_b.jpg', cv2.IMREAD_COLOR)
+    img_a = cv2.imread('Input/pic_a.jpg', cv2.IMREAD_COLOR)
+    img_b = cv2.imread('Input/pic_b.jpg', cv2.IMREAD_COLOR)
 
-    img_a = cv2.imread('Input/dino0.png', cv2.IMREAD_COLOR)
-    img_b = cv2.imread('Input/dino1.png', cv2.IMREAD_COLOR)
+    # img_a = cv2.imread('Input/dino0.png', cv2.IMREAD_COLOR)
+    # img_b = cv2.imread('Input/dino1.png', cv2.IMREAD_COLOR)
     try:
         pts_2dA = load_points(TwoD_fileA)
         pts_2dB = load_points(TwoD_fileB)
@@ -129,7 +154,10 @@ if __name__ == '__main__':
     # print("Estimated Fundamental-matrix is..\n ",F)
 
 
-    rect_img1,rect_img2,epilines1,epilines2 = image_rectification(img_a, img_b, pts_2dA, pts_2dB)
+    rect_img1, rect_img2, epilines1, epilines2, F = image_rectification(img_a, img_b, pts_2dA, pts_2dB)
+
+    # rect_img1, rect_img2 = plot_epilines(epilines1, epilines2, rect_img1, rect_img2, F)
+
 
 
     cv2.imwrite("Result/Rectified_left.png",rect_img1)
