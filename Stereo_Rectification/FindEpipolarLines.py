@@ -15,7 +15,7 @@ def get_lines(points,F_matrix,from_where = 2):
     lines/=np.sqrt(((lines[:,0])**2 + (lines[:,1])**2)).reshape(-1,1)
     return lines
 
-def find_epipoles(pts_2dA, pts_2dB,img_a,img_b):
+def find_epilines(pts_2dA, pts_2dB,img_a = None,img_b = None, show_lines = False):
 
     ### Normalizing the points, because normalizing is good. (as stated in the 8-point algorithm)
     mean_A = np.mean(pts_2dA,axis = 0)
@@ -49,38 +49,42 @@ def find_epipoles(pts_2dA, pts_2dB,img_a,img_b):
     ## Denormalizing the F-matrix with our previously stored stats.
     F = np.dot(denorm_B.T, np.dot(Fundam, denorm_A))
 
-    print("Estimated Fundamental-Matrix is \n", F)
+    # print("Estimated Fundamental-Matrix is \n", F)
 
-    eplines_a = get_lines(pts_2dB, F, from_where=2)
-    eplines_b = get_lines(pts_2dA, F, from_where=1)
-    
+    if show_lines:
+        eplines_a = get_lines(pts_2dB, F, from_where=2)
+        eplines_b = get_lines(pts_2dA, F, from_where=1)
+        
 
-    n, m, _ = img_a.shape
-    leftmost = np.cross([0, 0, 1], [n, 0, 1])
-    rightmost = np.cross([0, m, 1], [n, m, 1])
-    for i in range(len(eplines_a)):
-        line_a, line_b = eplines_a[i], eplines_b[i]
-        pt_a,pt_b = pts_2dA[i], pts_2dB[i]
+        n, m, _ = img_a.shape
+        leftmost = np.cross([0, 0, 1], [n, 0, 1])
+        rightmost = np.cross([0, m, 1], [n, m, 1])
+        for i in range(len(eplines_a)):
+            line_a, line_b = eplines_a[i], eplines_b[i]
+            pt_a,pt_b = pts_2dA[i], pts_2dB[i]
 
-        color = tuple(np.random.randint(0,255,3).tolist())
-        leftmost_a = np.cross(line_a, leftmost)
-        rightmost_a = np.cross(line_a, rightmost)
-        leftmost_a = (leftmost_a[:2] / leftmost_a[2]).astype(int)
-        rightmost_a = (rightmost_a[:2] / rightmost_a[2]).astype(int)
-        cv2.line(img_a, tuple(leftmost_a[:2]), tuple(rightmost_a[:2]), color, thickness=1)
-        cv2.circle(img_a, tuple(map(int,pt_a)), 4, color, -1)
+            color = tuple(np.random.randint(0,255,3).tolist())
+            leftmost_a = np.cross(line_a, leftmost)
+            rightmost_a = np.cross(line_a, rightmost)
+            leftmost_a = (leftmost_a[:2] / leftmost_a[2]).astype(int)
+            rightmost_a = (rightmost_a[:2] / rightmost_a[2]).astype(int)
+            cv2.line(img_a, tuple(leftmost_a[:2]), tuple(rightmost_a[:2]), color, thickness=1)
+            cv2.circle(img_a, tuple(map(int,pt_a)), 4, color, -1)
 
-        leftmost_b = np.cross(line_b, leftmost)
-        rightmost_b = np.cross(line_b, rightmost)
-        leftmost_b = (leftmost_b[:2] / leftmost_b[2]).astype(int)
-        rightmost_b = (rightmost_b[:2] / rightmost_b[2]).astype(int)
-        cv2.line(img_b, tuple(leftmost_b[:2]), tuple(rightmost_b[:2]), color, thickness=1)
-        cv2.circle(img_b, tuple(map(int,pt_b)), 4, color, -1)
+            leftmost_b = np.cross(line_b, leftmost)
+            rightmost_b = np.cross(line_b, rightmost)
+            leftmost_b = (leftmost_b[:2] / leftmost_b[2]).astype(int)
+            rightmost_b = (rightmost_b[:2] / rightmost_b[2]).astype(int)
+            cv2.line(img_b, tuple(leftmost_b[:2]), tuple(rightmost_b[:2]), color, thickness=1)
+            cv2.circle(img_b, tuple(map(int,pt_b)), 4, color, -1)
 
 
 
-    cv2.imwrite('Result/Epilines_A.png', img_a)
-    cv2.imwrite('Result/Epilines_B.png', img_b)
+        cv2.imwrite('Result/Epilines_A.png', img_a)
+        cv2.imwrite('Result/Epilines_B.png', img_b)
+        # print("")
+
+    return F
 
 
 if __name__ == "__main__":
@@ -103,4 +107,5 @@ if __name__ == "__main__":
         pts_2dB = np.load(TwoD_fileB).T[:,:2]
 
 
-    find_epipoles(pts_2dA, pts_2dB, img_a, img_b)
+    F = find_epilines(pts_2dA, pts_2dB, img_a, img_b,show_lines = True)
+    print("Estimated Fundamental-matrix is..\n ",F)
